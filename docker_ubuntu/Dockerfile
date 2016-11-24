@@ -4,7 +4,7 @@ FROM continuumio/anaconda3:latest
 
 RUN apt-get update
 
- Helper libraries
+# Helper libraries
 RUN apt-get install -y \
        git \
        man \
@@ -14,7 +14,11 @@ RUN apt-get install -y \
 RUN conda install -y \
           -c https://conda.anaconda.org/menpo opencv3
 
+RUN conda install -y \
+          -c conda-forge tensorflow
 
+RUN conda install -y \
+          jupyter
 
 # Helper libraries
 #RUN apt-get install -y \
