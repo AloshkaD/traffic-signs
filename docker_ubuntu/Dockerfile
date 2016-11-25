@@ -18,7 +18,8 @@ RUN conda install -y \
           -c conda-forge tensorflow
 
 RUN conda install -y \
-          jupyter
+          jupyter \
+          scikit-learn
 
 # Helper libraries
 #RUN apt-get install -y \
