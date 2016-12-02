@@ -13833,10 +13833,18 @@ gg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>For the data:</p>
-<ul>
-<li>Switch to grayscale</li>
-<li>Normalize the data between 0.1-0.9</li>
+<ol>
+<li>Switch to grayscale<ul>
+<li>I did this primarily because the authors of "Traffic Sign Recognition with Multi-Scale Convolutional Networks" said that's what gave them the best results.</li>
+<li>My general intuition is that since the colors are so blurry and and seem to have color distortion, it's best for the convNet to not focus on that part.</li>
+<li>Also, grayscale makes for less data, which makes the training run faster.</li>
 </ul>
+</li>
+<li>Normalize the data between 0.1-0.9<ul>
+<li>As we learned in the lecture, keeping the training values close to 0 gives better numerical stability and keeps the optimizer from having to do a lot of searching to find the solution.</li>
+</ul>
+</li>
+</ol>
 <p>For the labels:</p>
 <ul>
 <li>One-hot-encode the labels</li>
@@ -15759,7 +15767,7 @@ Data cached in pickle file.
 <p>I split the training set into training and validation. I also do the following:</p>
 <ul>
 <li>Small validation set (~5%)</li>
-<li>Try to feed random number to the generator to get different data every time I test</li>
+<li>My split training function uses the train_test_split() function. Instead of hardcoding the 'random_state' variable, I use randInt() to actually feed in a random number to the generator to get different split of the data every time I test.</li>
 <li>Stratify the data to make sure to get the same proportions in validation data as in training data</li>
 </ul>
 
@@ -15972,7 +15980,7 @@ Data cached in pickle file.
 <li>ConvNet 2: 5x5 with 32 depth and 2x2 max pooling</li>
 <li>Hidden Layer 1: 128 neurons</li>
 <li>Hidden Layer 2: 128 neurons</li>
-<li>Logit Layer</li>
+<li>Logit Layer: 43 neurons (1 for each of the different classes)</li>
 </ul>
 <p>The ConvNet and Hidden Layers all have:</p>
 <ul>
@@ -16336,7 +16344,8 @@ YII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>I use a Adam Optimizer, so I can get automatic adjustable learning_rate and get momentum. My batch size is 100 and I run 100 epochs.</p>
+<p>I use a Adam Optimizer, so I can get automatic adjustable learning_rate and get momentum.
+My batch size is 101 and I run 100 epochs. I got to these numbers through trial and error.</p>
 
 </div>
 </div>
